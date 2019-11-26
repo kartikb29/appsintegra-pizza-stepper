@@ -13,7 +13,7 @@ class Flavour extends Component {
 
   incrementSlice = (personIndex, flavourIndex) => {
     const sliceCountByPerson = this.props.sliceStore.sliceData[personIndex][flavourIndex]
-    const sliceByPerson = this.props.sliceStore.personSliceCount.slice(0,Number(personIndex) + 1)
+    const sliceByPerson = this.props.sliceStore.personSliceCount.slice(0, Number(personIndex) + 1)
     if ((sliceCountByPerson < this.props.settings.numberOfFlavourRequests) && sliceByPerson[personIndex] < 4) {
       const operation = '+'
       this.props.setSlices(operation, personIndex, flavourIndex)

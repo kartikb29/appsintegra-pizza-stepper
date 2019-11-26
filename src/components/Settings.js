@@ -27,7 +27,7 @@ class Settings extends Component {
   setSlices = (e) => {
     let slices = e.target.value
     if (slices > 18) { slices = 18 }
-    if (slices < 6) { slices = 6 }
+    // if (slices < 6) { slices = 6 }
     this.setState({
       numberOfSlices: slices
     })

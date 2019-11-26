@@ -10,10 +10,12 @@ class OrderInfo extends Component {
 
   render () {
     const numberOfFlavours = Number(this.props.settings.numberOfFlavours) + 1
-    const flavourSliceCount = (this.props.sliceStore.flavourSliceCount)
-    const flavourList = flavourSliceCount.slice(1, numberOfFlavours).map((data, index) => {
+    const flavourSliceCount = (this.props.sliceStore.flavourSliceCount).slice(1, numberOfFlavours)
+    const slicePerPizza = Number(this.props.settings.numberOfSlices)
+    const flavourList = flavourSliceCount.map((data, index) => {
+      const value = Math.ceil(data / slicePerPizza)
       return (
-        <li className="list-group-item" key={index} >Flavour {index + 1}: {Math.ceil(data / this.props.settings.numberOfSlices)}</li>
+        <li className="list-group-item" key={index} >Flavour {index + 1}: {value}</li>
       )
     })
     const totalSlices = this.props.sliceStore.totalSlices
