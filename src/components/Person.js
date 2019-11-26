@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Flavour from './Flavour'
 
+import { Card } from 'react-bootstrap'
+
 class Person extends Component {
   constructor () {
     super()
@@ -19,13 +21,17 @@ class Person extends Component {
       flavourList.push(this.getFlavour(i))
     }
     return (
-      <li className="list-group-item list-group-item-light">
-        <h5>Person: {this.props.personIndex}</h5>
-        <div className="row">
-          {flavourList}
-        </div>
+      <div>
+        <Card>
+          <Card.Header as="h5">Person: {this.props.personIndex}</Card.Header>
+          <Card.Body>
+            <div className="row justify-content-center">
+              {flavourList}
+            </div>
+          </Card.Body>
+        </Card>
         <p></p>
-      </li>
+      </div>
     )
   }
 }

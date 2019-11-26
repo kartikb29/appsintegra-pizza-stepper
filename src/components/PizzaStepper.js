@@ -82,9 +82,9 @@ class PizzaStepper extends Component {
             <StepLabel>Order Summary</StepLabel>
           </Step>
         </Stepper>
-        <Container>
+        <div>
           {this.getStep()}
-        </Container>
+        </div>
         <div>
           <Button
             disabled={activeStep === 0}

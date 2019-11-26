@@ -20,10 +20,8 @@ class PersonList extends Component {
     }
     return (
       <div className="container">
-        <h3>People Requests</h3>
-        <ul className="list-group">
-          {personList}
-        </ul>
+        <h3>Order Details</h3>
+        {personList}
         <p></p>
       </div>
     )

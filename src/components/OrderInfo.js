@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Card } from 'react-bootstrap'
 
 class OrderInfo extends Component {
   constructor () {
@@ -15,20 +16,27 @@ class OrderInfo extends Component {
     const flavourList = flavourSliceCount.map((data, index) => {
       const value = Math.ceil(data / slicePerPizza)
       return (
-        <li className="list-group-item" key={index} >Flavour {index + 1}: {value}</li>
+        <div className="col-sm-2" key={index}>
+          <Card bg="light">
+            <Card.Header as="h5">Flavour {index + 1}</Card.Header>
+            <Card.Title>{value}</Card.Title>
+          </Card>
+          <p></p>
+        </div>
       )
     })
     const totalSlices = this.props.sliceStore.totalSlices
     return (
-      <div className="container">
+      <div>
         <h3>Order Info</h3>
-        <h5 className="container">Total Slices: {totalSlices}</h5>
-        <p></p>
-        <div className="container">
-          <ul className="list-group">
+        <Card>
+          <Card.Header as="h5">Total Slices: {totalSlices}</Card.Header>
+          <p></p>
+          <div className="row justify-content-center">
             {flavourList}
-          </ul>
-        </div>
+          </div>
+          <p></p>
+        </Card>
         <p></p>
       </div>
     )

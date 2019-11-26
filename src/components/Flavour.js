@@ -4,6 +4,8 @@ import setSettings from '../actions/setSettings'
 import setSlices from '../actions/setSlices'
 import { bindActionCreators } from 'redux'
 
+import { Card } from 'react-bootstrap'
+
 class Flavour extends Component {
   constructor () {
     super()
@@ -30,16 +32,16 @@ class Flavour extends Component {
     const personIndex = this.props.personIndex
     return (
       <div className="col-sm-2">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Flavour {flavourIndex}</h5>
-            <h6 className="card-text">Slices: {this.props.sliceStore.sliceData[personIndex][flavourIndex]}</h6>
+        <Card bg="light">
+          <Card.Body>
+            <Card.Title>Flavour {flavourIndex}</Card.Title>
+            <Card.Text>Slices: {this.props.sliceStore.sliceData[personIndex][flavourIndex]}</Card.Text>
             <p></p>
             <input className="btn btn-primary" type="button" value="+" onClick={() => { this.incrementSlice(personIndex, flavourIndex) }} />
-            <span> </span>
+            <span>  </span>
             <input className="btn btn-secondary" type="button" value="-" onClick={() => { this.decrementSlice(personIndex, flavourIndex) }}/>
-          </div>
-        </div>
+          </Card.Body>
+        </Card>
       </div>
     )
   }
