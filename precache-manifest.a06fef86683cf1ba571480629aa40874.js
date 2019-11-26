@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5019d0f9c4e9813dac2346ee7fb5eb27",
+    "revision": "512809178765bc02c1c246b5fd68960f",
     "url": "/appsintegra-pizza-stepper/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/appsintegra-pizza-stepper/static/css/2.b0bb7f2c.chunk.css"
   },
   {
-    "revision": "4dc526d76dfe6a4fab53",
+    "revision": "820dbf5440f84fb7af70",
     "url": "/appsintegra-pizza-stepper/static/css/main.95648506.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/appsintegra-pizza-stepper/static/js/2.b538d660.chunk.js"
   },
   {
-    "revision": "4dc526d76dfe6a4fab53",
-    "url": "/appsintegra-pizza-stepper/static/js/main.3862df07.chunk.js"
+    "revision": "820dbf5440f84fb7af70",
+    "url": "/appsintegra-pizza-stepper/static/js/main.3ed4b998.chunk.js"
   },
   {
     "revision": "ec057bb736f7aba757a5",

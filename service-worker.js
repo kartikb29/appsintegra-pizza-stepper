@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/appsintegra-pizza-stepper/precache-manifest.f57fe3b5926f6cbd1602eae50626036e.js"
+  "/appsintegra-pizza-stepper/precache-manifest.a06fef86683cf1ba571480629aa40874.js"
 );
 
 self.addEventListener('message', (event) => {
