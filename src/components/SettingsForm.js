@@ -1,56 +1,58 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import setSettings from '../actions/setSettings'
-import { bindActionCreators } from 'redux'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import setSettings from '../actions/setSettings';
+import {bindActionCreators} from 'redux';
 
-import { Button, Form, Row, Col, Container } from 'react-bootstrap'
+import {Button, Form, Row, Col, Container} from 'react-bootstrap';
 
-class Settings extends Component {
-  constructor () {
-    super()
+class SettingsForm extends Component {
+  constructor() {
+    super();
     this.state = {
       numberOfPeople: 0,
       numberOfSlices: 0,
       numberOfFlavours: 0,
-      numberOfSliceRequests: 0
-    }
+      numberOfSliceRequests: 0,
+    };
   }
 
   setPeople = (e) => {
     this.setState({
-      numberOfPeople: e.target.value
-    })
+      numberOfPeople: e.target.value,
+    });
   }
 
   setSlices = (e) => {
-    let slices = e.target.value
-    if (slices > 18) { slices = 18 }
+    let slices = e.target.value;
+    if (slices > 18) {
+      slices = 18;
+    }
     // if (slices < 6) { slices = 6 }
     this.setState({
-      numberOfSlices: slices
-    })
+      numberOfSlices: slices,
+    });
   }
 
   setFlavours = (e) => {
     this.setState({
-      numberOfFlavours: e.target.value
-    })
+      numberOfFlavours: e.target.value,
+    });
   }
 
   setSliceRequests = (e) => {
     this.setState({
-      numberOfSliceRequests: e.target.value
-    })
+      numberOfSliceRequests: e.target.value,
+    });
   }
 
   storeSettings = (e) => {
-    e.preventDefault()
-    const data = this.state
-    this.props.setSettings(data)
+    e.preventDefault();
+    const data = this.state;
+    this.props.setSettings(data);
   }
 
-  render () {
-    const settings = this.props.settings
+  render() {
+    const settings = this.props.settings;
     return (
       <Container>
         <h3>Settings</h3>
@@ -85,20 +87,20 @@ class Settings extends Component {
         </Form>
         <p></p>
       </Container>
-    )
+    );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
-    settings: state.settings
-  }
+    settings: state.settings,
+  };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setSettings: setSettings
-  }, dispatch)
+    setSettings: setSettings,
+  }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsForm);

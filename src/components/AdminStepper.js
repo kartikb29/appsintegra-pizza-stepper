@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Settings from './Settings';
-import PersonList from './PersonList';
+import SettingsForm from './SettingsForm';
 import OrderInfo from './OrderInfo';
 import {connect} from 'react-redux';
 import setSettings from '../actions/setSettings';
@@ -14,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-class PizzaStepper extends Component {
+class AdminStepper extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,7 +23,7 @@ class PizzaStepper extends Component {
 
   handleNext = () => {
     const {activeStep} = this.state;
-    if (activeStep <= 2) {
+    if (activeStep <= 1) {
       this.setState({
         activeStep: activeStep + 1,
       });
@@ -57,10 +56,8 @@ class PizzaStepper extends Component {
   getStep = () => {
     const {activeStep} = this.state;
     if (activeStep === 0) {
-      return <Settings />;
+      return <SettingsForm />;
     } else if (activeStep === 1) {
-      return <PersonList />;
-    } else if (activeStep === 2) {
       return <OrderInfo />;
     } else {
       return <Typography>Thank You</Typography>;
@@ -74,9 +71,6 @@ class PizzaStepper extends Component {
         <Stepper activeStep={activeStep}>
           <Step key={0}>
             <StepLabel>Settings</StepLabel>
-          </Step>
-          <Step key={1} active={true}>
-            <StepLabel>Order</StepLabel>
           </Step>
           <Step key={2}>
             <StepLabel>Order Summary</StepLabel>
@@ -124,4 +118,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PizzaStepper);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminStepper);

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import Settings from './Settings';
-import PersonList from './PersonList';
-import OrderInfo from './OrderInfo';
+import PersonForm from './PersonForm';
+import PersonOrder from './PersonOrder';
 import {connect} from 'react-redux';
 import setSettings from '../actions/setSettings';
 import setSlices from '../actions/setSlices';
@@ -14,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-class PizzaStepper extends Component {
+class PersonStepper extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,7 +23,7 @@ class PizzaStepper extends Component {
 
   handleNext = () => {
     const {activeStep} = this.state;
-    if (activeStep <= 2) {
+    if (activeStep <= 1) {
       this.setState({
         activeStep: activeStep + 1,
       });
@@ -54,14 +53,12 @@ class PizzaStepper extends Component {
     });
   };
 
-  getStep = () => {
+  getStep = (personId) => {
     const {activeStep} = this.state;
     if (activeStep === 0) {
-      return <Settings />;
+      return <PersonForm personIndex={personId} />;
     } else if (activeStep === 1) {
-      return <PersonList />;
-    } else if (activeStep === 2) {
-      return <OrderInfo />;
+      return <PersonOrder personIndex={personId}/>;
     } else {
       return <Typography>Thank You</Typography>;
     }
@@ -69,44 +66,49 @@ class PizzaStepper extends Component {
 
   render() {
     const {activeStep} = this.state;
-    return (
-      <Container>
-        <Stepper activeStep={activeStep}>
-          <Step key={0}>
-            <StepLabel>Settings</StepLabel>
-          </Step>
-          <Step key={1} active={true}>
-            <StepLabel>Order</StepLabel>
-          </Step>
-          <Step key={2}>
-            <StepLabel>Order Summary</StepLabel>
-          </Step>
-        </Stepper>
-        <div>
-          {this.getStep()}
-        </div>
-        <div>
-          <Button
-            disabled={activeStep === 0}
-            onClick={this.handleReset}
-            variant="outlined"
-            color="primary"
-          >Reset</Button>
-          <span> </span>
-          <Button
-            disabled={activeStep === 0}
-            onClick={this.handleBack}
-            variant="contained"
-          >Back</Button>
-          <span> </span>
-          <Button
-            onClick={this.handleNext}
-            variant="contained"
-            color="primary"
-          >Next</Button>
-        </div>
-      </Container>
-    );
+    const personId = this.props.match.params.personId;
+    const maxPeople = this.props.settings.numberOfPeople;
+    if (personId <= maxPeople) {
+      return (
+        <Container>
+          <Stepper activeStep={activeStep}>
+            <Step key={0}>
+              <StepLabel>Add Details</StepLabel>
+            </Step>
+            <Step key={2}>
+              <StepLabel>Place your order</StepLabel>
+            </Step>
+          </Stepper>
+          <div>
+            {this.getStep(personId)}
+          </div>
+          <div>
+            <Button
+              disabled={activeStep === 0}
+              onClick={this.handleReset}
+              variant="outlined"
+              color="primary"
+            >Reset</Button>
+            <span> </span>
+            <Button
+              disabled={activeStep === 0}
+              onClick={this.handleBack}
+              variant="contained"
+            >Back</Button>
+            <span> </span>
+            <Button
+              onClick={this.handleNext}
+              variant="contained"
+              color="primary"
+            >Next</Button>
+          </div>
+        </Container>
+      );
+    } else {
+      return (
+        <h3>Sorry! You cannot place an order, please contact the admin.</h3>
+      );
+    }
   }
 }
 
@@ -124,4 +126,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PizzaStepper);
+export default connect(mapStateToProps, mapDispatchToProps)(PersonStepper);

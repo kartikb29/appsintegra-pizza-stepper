@@ -1,34 +1,39 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import setSettings from '../actions/setSettings'
-import setSlices from '../actions/setSlices'
-import { bindActionCreators } from 'redux'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import setSettings from '../actions/setSettings';
+import setSlices from '../actions/setSlices';
+import {bindActionCreators} from 'redux';
+import {ProgressBar} from 'react-bootstrap';
 
-import { Card } from 'react-bootstrap'
+import {Card} from 'react-bootstrap';
 
 class Flavour extends Component {
-  constructor () {
-    super()
+  constructor() {
+    super();
     this.state = {
-    }
+    };
   }
 
   incrementSlice = (personIndex, flavourIndex) => {
-    const sliceByPerson = this.props.sliceStore.personSliceCount.slice(0, Number(personIndex) + 1)
+    const sliceByPerson = this.props.sliceStore.personSliceCount.slice(0, Number(personIndex) + 1);
     if (sliceByPerson[personIndex] < this.props.settings.numberOfSliceRequests) {
-      const operation = '+'
-      this.props.setSlices(operation, personIndex, flavourIndex)
+      const operation = '+';
+      this.props.setSlices(operation, personIndex, flavourIndex);
     }
   }
 
   decrementSlice = (personIndex, flavourIndex) => {
-    const operation = '-'
-    this.props.setSlices(operation, personIndex, flavourIndex)
+    const operation = '-';
+    this.props.setSlices(operation, personIndex, flavourIndex);
   }
 
-  render () {
-    const flavourIndex = this.props.flavourIndex
-    const personIndex = this.props.personIndex
+  render() {
+    const flavourIndex = this.props.flavourIndex;
+    const personIndex = this.props.personIndex;
+    const numberOfSlices = this.props.settings.numberOfSlices;
+    const numberOfSlicesByFlavour = this.props.sliceStore.flavourSliceCount[flavourIndex];
+    const moduloSlices = (numberOfSlicesByFlavour) % numberOfSlices;
+    const progress = (moduloSlices/numberOfSlices)*100;
     return (
       <div className="col-sm-2">
         <Card bg="light">
@@ -36,28 +41,34 @@ class Flavour extends Component {
             <Card.Title>Flavour {flavourIndex}</Card.Title>
             <Card.Text>Slices: {this.props.sliceStore.sliceData[personIndex][flavourIndex]}</Card.Text>
             <p></p>
-            <input className="btn btn-primary" type="button" value="+" onClick={() => { this.incrementSlice(personIndex, flavourIndex) }} />
+            <input className="btn btn-primary" type="button" value="+" onClick={() => {
+              this.incrementSlice(personIndex, flavourIndex);
+            }} />
             <span>  </span>
-            <input className="btn btn-secondary" type="button" value="-" onClick={() => { this.decrementSlice(personIndex, flavourIndex) }}/>
+            <input className="btn btn-secondary" type="button" value="-" onClick={() => {
+              this.decrementSlice(personIndex, flavourIndex);
+            }}/>
           </Card.Body>
         </Card>
+        <p></p>
+        <ProgressBar variant="danger" now={progress}></ProgressBar>
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     settings: state.settings,
-    sliceStore: state.sliceStore
-  }
+    sliceStore: state.sliceStore,
+  };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     setSettings: setSettings,
-    setSlices: setSlices
-  }, dispatch)
+    setSlices: setSlices,
+  }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Flavour)
+export default connect(mapStateToProps, mapDispatchToProps)(Flavour);

@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Card } from 'react-bootstrap'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Card} from 'react-bootstrap';
 
 class FlavourInfo extends Component {
-  constructor () {
-    super()
+  constructor() {
+    super();
     this.state = {
-    }
+    };
   }
 
-  render () {
+  render() {
     return (
       <div className="col-sm-2">
         <Card bg="light">
@@ -19,15 +19,15 @@ class FlavourInfo extends Component {
         </Card>
         <p></p>
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     settings: state.settings,
-    sliceStore: state.sliceStore
-  }
+    sliceStore: state.sliceStore,
+  };
 }
 
-export default connect(mapStateToProps)(FlavourInfo)
+export default connect(mapStateToProps)(FlavourInfo);

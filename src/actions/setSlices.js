@@ -4,7 +4,7 @@ export default (operation, personIndex, flavourIndex) => {
     payload: {
       operation,
       personIndex,
-      flavourIndex
-    }
-  }
-}
+      flavourIndex,
+    },
+  };
+};

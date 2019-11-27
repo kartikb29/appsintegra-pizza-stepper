@@ -1,27 +1,33 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true
+  'env': {
+    'browser': true,
+    'es6': true,
   },
-  extends: [
+  'extends': [
     'plugin:react/recommended',
-    'standard'
+    'google',
   ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+  'globals': {
+    'Atomics': 'readonly',
+    'SharedArrayBuffer': 'readonly',
+  },
+  'parserOptions': {
+    'ecmaFeatures': {
+      'jsx': true,
+    },
+    'ecmaVersion': 2018,
+    'sourceType': 'module',
   },
   "parser": "babel-eslint",
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module'
-  },
-  plugins: [
-    'react'
+  'plugins': [
+    'react',
+    'babel'
   ],
-  rules: {
-  }
-}
+  'rules': {
+    "require-jsdoc" : 0,
+    "strict": 0,
+    "max-len": 0,
+    "no-invalid-this": 0,
+    "react/prop-types": 0
+  },
+};
