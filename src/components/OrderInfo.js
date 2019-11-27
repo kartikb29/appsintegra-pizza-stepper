@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card } from 'react-bootstrap'
+import FlavourInfo from './FlavourInfo'
 
 class OrderInfo extends Component {
   constructor () {
@@ -14,15 +15,15 @@ class OrderInfo extends Component {
     const flavourSliceCount = (this.props.sliceStore.flavourSliceCount).slice(1, numberOfFlavours)
     const slicePerPizza = Number(this.props.settings.numberOfSlices)
     const flavourList = flavourSliceCount.map((data, index) => {
-      const value = Math.ceil(data / slicePerPizza)
+      const pizzaValue = Math.floor(data / slicePerPizza)
+      const slicesValue = data % slicePerPizza
       return (
-        <div className="col-sm-2" key={index}>
-          <Card bg="light">
-            <Card.Header as="h5">Flavour {index + 1}</Card.Header>
-            <Card.Title>{value}</Card.Title>
-          </Card>
-          <p></p>
-        </div>
+        <FlavourInfo
+          pizzaValue={pizzaValue}
+          slicesValue={slicesValue}
+          index={index}
+          key={index}>
+        </FlavourInfo>
       )
     })
     const totalSlices = this.props.sliceStore.totalSlices

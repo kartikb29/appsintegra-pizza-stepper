@@ -12,7 +12,7 @@ class Settings extends Component {
       numberOfPeople: 0,
       numberOfSlices: 0,
       numberOfFlavours: 0,
-      numberOfFlavourRequests: 0
+      numberOfSliceRequests: 0
     }
   }
 
@@ -37,9 +37,9 @@ class Settings extends Component {
     })
   }
 
-  setFlavourRequests = (e) => {
+  setSliceRequests = (e) => {
     this.setState({
-      numberOfFlavourRequests: e.target.value
+      numberOfSliceRequests: e.target.value
     })
   }
 
@@ -75,9 +75,9 @@ class Settings extends Component {
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
-            <Form.Label column sm={3}>Maximum slice/person/flavour:</Form.Label>
+            <Form.Label column sm={3}>Maximum slice/person:</Form.Label>
             <Col sm={9}>
-              <Form.Control onChange={this.setFlavourRequests} defaultValue={settings.numberOfFlavourRequests} type="number" placeholder="Enter maximum slice/person/flavour" />
+              <Form.Control onChange={this.setSliceRequests} defaultValue={settings.numberOfSliceRequests} type="number" placeholder="Enter maximum slice/person" />
             </Col>
           </Form.Group>
           <p></p>

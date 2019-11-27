@@ -3,7 +3,7 @@ const initSettings =
     numberOfPeople: 0,
     numberOfSlices: 0,
     numberOfFlavours: 0,
-    numberOfFlavourRequests: 0
+    numberOfSliceRequests: 0
   }
 
 export default (state = initSettings, action) => {
