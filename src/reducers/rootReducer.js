@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import settingsReducer from './settingsReducer';
-import slicesReducer from './slicesReducer';
+import orderReducer from './orderReducer';
 import personReducer from './personReducer'
 
 const rootreducer = combineReducers({
   settings: settingsReducer,
-  sliceStore: slicesReducer,
+  orderStore: orderReducer,
   personStore: personReducer,
 });
 

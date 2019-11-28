@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Card} from 'react-bootstrap';
+import {Card, Container} from 'react-bootstrap';
 import FlavourInfo from './FlavourInfo';
 
 class OrderInfo extends Component {
@@ -12,7 +12,7 @@ class OrderInfo extends Component {
 
   render() {
     const numberOfFlavours = Number(this.props.settings.numberOfFlavours) + 1;
-    const flavourSliceCount = (this.props.sliceStore.flavourSliceCount).slice(1, numberOfFlavours);
+    const flavourSliceCount = (this.props.orderStore.flavourSliceCount).slice(1, numberOfFlavours);
     const slicePerPizza = Number(this.props.settings.numberOfSlices);
     const flavourList = flavourSliceCount.map((data, index) => {
       const pizzaValue = Math.floor(data / slicePerPizza);
@@ -26,9 +26,9 @@ class OrderInfo extends Component {
         </FlavourInfo>
       );
     });
-    const totalSlices = this.props.sliceStore.totalSlices;
+    const totalSlices = this.props.orderStore.totalSlices;
     return (
-      <div>
+      <Container>
         <h3>Order Info</h3>
         <Card>
           <Card.Header as="h5">Total Slices: {totalSlices}</Card.Header>
@@ -39,7 +39,7 @@ class OrderInfo extends Component {
           <p></p>
         </Card>
         <p></p>
-      </div>
+      </Container>
     );
   }
 }
@@ -47,7 +47,7 @@ class OrderInfo extends Component {
 function mapStateToProps(state) {
   return {
     settings: state.settings,
-    sliceStore: state.sliceStore,
+    orderStore: state.orderStore,
   };
 }
 

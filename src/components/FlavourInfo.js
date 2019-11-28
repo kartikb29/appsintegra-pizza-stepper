@@ -26,7 +26,6 @@ class FlavourInfo extends Component {
 function mapStateToProps(state) {
   return {
     settings: state.settings,
-    sliceStore: state.sliceStore,
   };
 }
 

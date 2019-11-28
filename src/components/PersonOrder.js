@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Flavour from './Flavour';
+import confirmOrder from '../actions/confirmOrder';
+import {bindActionCreators} from 'redux';
 
-import {Card} from 'react-bootstrap';
+import {Card, Button} from 'react-bootstrap';
 import {ProgressBar} from 'react-bootstrap';
 
 
-class Person extends Component {
+class PersonOrder extends Component {
   constructor() {
     super();
     this.state = {
@@ -17,13 +19,19 @@ class Person extends Component {
     return <Flavour key={i} flavourIndex={i} personIndex={this.props.personIndex} />;
   }
 
+  handleConfirmOrder = (personIndex) => {
+    this.props.confirmOrder(personIndex);
+  }
+
   render() {
     const flavourList = [];
-    const numberOfSlices = this.props.settings.numberOfSlices;
+    const numberOfFlavours = Number(this.props.settings.numberOfFlavours);
+    const numberOfSlicesPerPizza = this.props.settings.numberOfSlices;
     const personIndex = this.props.personIndex;
-    const numberOfSlicesByPerson = this.props.sliceStore.personSliceCount[personIndex];
-    const yourProgress = (numberOfSlicesByPerson/numberOfSlices)*100;
-    for (let i = 1; i <= Number(this.props.settings.numberOfFlavours); i++) {
+    const numberOfSlicesByPerson = this.props.orderStore.personSliceCount[personIndex];
+    const yourProgress = (numberOfSlicesByPerson/numberOfSlicesPerPizza)*100;
+
+    for (let i = 1; i <= Number(numberOfFlavours); i++) {
       flavourList.push(this.getFlavour(i));
     }
     return (
@@ -40,6 +48,10 @@ class Person extends Component {
           <ProgressBar now={yourProgress}></ProgressBar>
         </Card>
         <p></p>
+        <Button variant="primary" onClick={() => {
+          this.handleConfirmOrder(personIndex);
+        }}>Submit</Button>
+        <p></p>
       </div>
     );
   }
@@ -48,8 +60,14 @@ class Person extends Component {
 function mapStateToProps(state) {
   return {
     settings: state.settings,
-    sliceStore: state.sliceStore,
+    orderStore: state.orderStore,
   };
 }
 
-export default connect(mapStateToProps)(Person);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    confirmOrder: confirmOrder,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonOrder);

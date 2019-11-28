@@ -7,4 +7,3 @@ export default (personIndex, data) => {
     },
   };
 };
-

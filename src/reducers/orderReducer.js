@@ -3,6 +3,7 @@ const initState = {
   totalSlices: 0,
   flavourSliceCount: new Array(100).fill(0),
   personSliceCount: new Array(100).fill(0),
+  personOrderCheck: new Array(100).fill(false),
 };
 
 export default (state = initState, action) => {
@@ -11,9 +12,10 @@ export default (state = initState, action) => {
     totalSlices: 0,
     flavourSliceCount: new Array(100).fill(0),
     personSliceCount: new Array(100).fill(0),
+    personOrderCheck: new Array(100).fill(false),
   };
+  let newState = Object.assign({}, state);
   if (action.type === 'setSlices') {
-    let newState = Object.assign({}, state);
     const personIndex = Number(action.payload.personIndex);
     const flavourIndex = Number(action.payload.flavourIndex);
     if (action.payload.operation === '+') {
@@ -28,9 +30,14 @@ export default (state = initState, action) => {
         newState.flavourSliceCount[flavourIndex]--;
         newState.personSliceCount[personIndex]--;
       }
-    } else if (action.payload.operation === 'r') {
-      newState = Object.assign({}, blankState);
     }
+    return newState;
+  } else if (action.type === 'confirmOrder') {
+    const personIndex = Number(action.payload.personIndex);
+    newState.personOrderCheck[personIndex] = true;
+    return newState;
+  } else if (action.type === 'reset') {
+    newState = Object.assign({}, blankState);
     return newState;
   } else {
     return state;

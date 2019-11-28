@@ -40,17 +40,7 @@ class PersonStepper extends Component {
   };
 
   handleReset = () => {
-    const settings = {
-      numberOfPeople: 0,
-      numberOfSlices: 0,
-      numberOfFlavours: 0,
-      numberOfFlavourRequests: 0,
-    };
-    this.props.setSettings(settings);
-    this.props.setSlices('r');
-    this.setState({
-      activeStep: 0,
-    });
+
   };
 
   getStep = (personId) => {
@@ -60,14 +50,17 @@ class PersonStepper extends Component {
     } else if (activeStep === 1) {
       return <PersonOrder personIndex={personId}/>;
     } else {
-      return <Typography>Thank You</Typography>;
+      return <div>
+        <Typography>Thank You</Typography>
+        <p></p>
+      </div>;
     }
-  }
+  };
 
   render() {
     const {activeStep} = this.state;
     const personId = this.props.match.params.personId;
-    const maxPeople = this.props.settings.numberOfPeople;
+    const maxPeople = Number(this.props.settings.numberOfPeople);
     if (personId <= maxPeople) {
       return (
         <Container>
@@ -115,7 +108,6 @@ class PersonStepper extends Component {
 function mapStateToProps(state) {
   return {
     settings: state.settings,
-    sliceStore: state.sliceStore,
   };
 }
 
