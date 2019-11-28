@@ -34,10 +34,10 @@ class PersonOrder extends Component {
   render() {
     const flavourList = [];
     const numberOfFlavours = Number(this.props.settings.numberOfFlavours);
-    const numberOfSlicesPerPizza = this.props.settings.numberOfSlices;
+    const numberOfSliceRequests = this.props.settings.numberOfSliceRequests;
     const personIndex = this.props.personIndex;
     const numberOfSlicesByPerson = this.props.orderStore.personSliceCount[personIndex];
-    const yourProgress = (numberOfSlicesByPerson/numberOfSlicesPerPizza)*100;
+    const yourProgress = (numberOfSlicesByPerson/numberOfSliceRequests)*100;
 
     for (let i = 1; i <= Number(numberOfFlavours); i++) {
       flavourList.push(this.getFlavour(i));
@@ -54,6 +54,7 @@ class PersonOrder extends Component {
             </div>
           </Card.Body>
           {this.getProgressBar(yourProgress)}
+          <p></p>
         </Card>
         <p></p>
         <Button variant="primary" onClick={() => {

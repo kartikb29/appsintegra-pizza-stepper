@@ -6,12 +6,7 @@ import setSettings from '../actions/setSettings';
 import setSlices from '../actions/setSlices';
 import {bindActionCreators} from 'redux';
 
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import {Stepper, Step, StepLabel, Button, Container, Typography} from '@material-ui/core';
 
 class PersonStepper extends Component {
   constructor() {
@@ -23,7 +18,7 @@ class PersonStepper extends Component {
 
   handleNext = () => {
     const {activeStep} = this.state;
-    if (activeStep <= 1) {
+    if (activeStep < 1) {
       this.setState({
         activeStep: activeStep + 1,
       });
@@ -99,7 +94,10 @@ class PersonStepper extends Component {
       );
     } else {
       return (
-        <h3>Sorry! You cannot place an order, please contact the admin.</h3>
+        <Container>
+          <p></p>
+          <h5>Sorry! You cannot place an order, please contact the admin.</h5>
+        </Container>
       );
     }
   }
