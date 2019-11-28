@@ -52,8 +52,8 @@ class Flavour extends Component {
     }
     const newSliceDifference = this.getSliceDifference(flavourSliceCount, numberOfSlicesPerPizza);
     const newPicksRemaining = this.getPicksRemaining(personSliceCount, maxSlices);
-    console.log(`NewSliceDifference:${newSliceDifference}`);
-    console.log(`NewPicksRemaining:${newPicksRemaining}`);
+    // console.log(`NewSliceDifference:${newSliceDifference}`);
+    // console.log(`NewPicksRemaining:${newPicksRemaining}`);
     if (newSliceDifference <= newPicksRemaining) {
       return true;
     } else {
@@ -104,7 +104,7 @@ class Flavour extends Component {
           </Card.Body>
         </Card>
         <p></p>
-        <ProgressBar variant="danger" now={progress}></ProgressBar>
+        <ProgressBar variant="warning" now={progress}></ProgressBar>
       </div>
     );
   }

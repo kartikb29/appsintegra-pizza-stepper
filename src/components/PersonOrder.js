@@ -23,6 +23,14 @@ class PersonOrder extends Component {
     this.props.confirmOrder(personIndex);
   }
 
+  getProgressBar = (yourProgress) => {
+    if (yourProgress < 100) {
+      return (<ProgressBar animated variant="info" now={yourProgress}></ProgressBar>);
+    } else {
+      return (<ProgressBar variant="success" now={yourProgress}></ProgressBar>);
+    }
+  }
+
   render() {
     const flavourList = [];
     const numberOfFlavours = Number(this.props.settings.numberOfFlavours);
@@ -45,7 +53,7 @@ class PersonOrder extends Component {
               {flavourList}
             </div>
           </Card.Body>
-          <ProgressBar now={yourProgress}></ProgressBar>
+          {this.getProgressBar(yourProgress)}
         </Card>
         <p></p>
         <Button variant="primary" onClick={() => {
